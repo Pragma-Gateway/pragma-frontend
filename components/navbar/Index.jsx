@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SignButtons from "../SignButtons";
+import SignButtons from "./SignButtons";
 import PagesList from "./PagesList";
 
 // nav taken from tailwind css template
