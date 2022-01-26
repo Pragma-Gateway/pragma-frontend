@@ -64,7 +64,7 @@ const AddData = () => {
           Add to or update your data profile!
         </p>
       </div>
-      <CurrentData data={data} />
+      <CurrentData data={data} setData={setData} />
       {/* data list container */}
       <div className="max-w-lg space-y-3 sm:mx-auto lg:max-w-xl">
         <SearchBar />
