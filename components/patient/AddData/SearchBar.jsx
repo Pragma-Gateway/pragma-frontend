@@ -1,8 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Fuse from "fuse.js";
 
+import searchData from "../searchData";
+import { fuseToSearchResults } from "../../helpers";
+
+// options for the fuse.js library
+const options = {
+  includeScore: true,
+  // Search in for these keys in the objects in the array
+  keys: ["name", "description", "type"],
+};
 // lets you search for data to add
-const SearchBar = ({ name }) => {
+const SearchBar = ({ setSearchResults }) => {
   const [search, setSearch] = useState("");
+  const fuse = new Fuse(searchData, options);
+  // TODO: loadsh debouce this for anti spam
+  useEffect(() => {
+    if (search) {
+      let result = fuse.search(search);
+      result = fuseToSearchResults(result);
+      setSearchResults(result);
+    }
+  }, [search]);
   return (
     <div className="flex items-center p-2 duration-300 transform border rounded shadow scale-105 sm:scale-110">
       <div className="mr-2">
