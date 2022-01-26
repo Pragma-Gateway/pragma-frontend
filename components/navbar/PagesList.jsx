@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 // the pages for both mobile and desktop that are in the navbar
 // screenSize can be either "mobile" or "desktop"
-
 const tailwindStyles = {
   desktop: {
     ul: "flex items-center hidden space-x-8 lg:flex",
@@ -16,44 +17,39 @@ const PagesList = ({ screenSize }) => {
   return (
     <ul className={tailwindStyles[screenSize].ul}>
       <li>
-        <a
-          href="/"
-          aria-label="Our product"
-          title="Our product"
-          className={tailwindStyles[screenSize].a}
-        >
-          Product
-        </a>
+        <Link href="/">
+          <a
+            href="/"
+            aria-label="Home"
+            title="Home"
+            className={tailwindStyles[screenSize].a}
+          >
+            Home
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="/"
-          aria-label="Our product"
-          title="Our product"
-          className={tailwindStyles[screenSize].a}
-        >
-          Features
-        </a>
+        <Link href="/patient">
+          <a
+            aria-label="Patient"
+            title="Patient"
+            className={tailwindStyles[screenSize].a}
+          >
+            Patient
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="/"
-          aria-label="Product pricing"
-          title="Product pricing"
-          className={tailwindStyles[screenSize].a}
-        >
-          Pricing
-        </a>
-      </li>
-      <li>
-        <a
-          href="/"
-          aria-label="About us"
-          title="About us"
-          className={tailwindStyles[screenSize].a}
-        >
-          About us
-        </a>
+        <Link href="/institution">
+          <a
+            href="/"
+            aria-label="Institution"
+            title="Institution"
+            className={tailwindStyles[screenSize].a}
+          >
+            Institution
+          </a>
+        </Link>
       </li>
     </ul>
   );

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { useState } from "react";
+
 import SignButtons from "./SignButtons";
 import PagesList from "./PagesList";
 
@@ -11,31 +13,32 @@ const Navbar = () => {
       <div class="relative flex items-center justify-between">
         <div class="flex items-center">
           {/* Logo, to be replaced */}
-          <a
-            href="/"
-            aria-label="Company"
-            title="Company"
-            class="inline-flex items-center mr-8"
-          >
-            <svg
-              class="w-8 text-deep-purple-accent-400"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              stroke="currentColor"
-              fill="none"
+          <Link href="/">
+            <a
+              aria-label="Pragma"
+              title="Pragma"
+              class="inline-flex items-center mr-8"
             >
-              <rect x="3" y="1" width="7" height="12" />
-              <rect x="3" y="17" width="7" height="6" />
-              <rect x="14" y="1" width="7" height="6" />
-              <rect x="14" y="11" width="7" height="12" />
-            </svg>
-            <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Company
-            </span>
-          </a>
+              <svg
+                class="w-8 text-deep-purple-accent-400"
+                viewBox="0 0 24 24"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeMiterlimit="10"
+                stroke="currentColor"
+                fill="none"
+              >
+                <rect x="3" y="1" width="7" height="12" />
+                <rect x="3" y="17" width="7" height="6" />
+                <rect x="14" y="1" width="7" height="6" />
+                <rect x="14" y="11" width="7" height="12" />
+              </svg>
+              <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+                Pragma
+              </span>
+            </a>
+          </Link>
           <PagesList screenSize="desktop" />
         </div>
         <SignButtons />
@@ -69,8 +72,8 @@ const Navbar = () => {
                     {/* logo to be changed */}
                     <a
                       href="/"
-                      aria-label="Company"
-                      title="Company"
+                      aria-label="Pragma"
+                      title="Pragma"
                       class="inline-flex items-center"
                     >
                       <svg
@@ -89,7 +92,7 @@ const Navbar = () => {
                         <rect x="14" y="11" width="7" height="12" />
                       </svg>
                       <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        Company
+                        Pragma
                       </span>
                     </a>
                   </div>
