@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+        el: ["El Messiri", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         red: {
@@ -157,7 +158,7 @@ module.exports = {
         },
         gray: {
           50: "#fafafa",
-          100: "#f5f5f5",
+          100: "#F8F8F8",
           200: "#eeeeee",
           300: "#e0e0e0",
           400: "#bdbdbd",
@@ -166,6 +167,8 @@ module.exports = {
           700: "#616161",
           800: "#424242",
           900: "#212121",
+          sidebar: "#F8F8F8",
+          text: "#959595",
         },
         "blue-gray": {
           50: "#eceff1",

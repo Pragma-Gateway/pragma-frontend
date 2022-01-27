@@ -1,7 +1,13 @@
 import Landing from "../components/home/Landing";
+import Navbar from "../components/navbar/Index";
 
 const Home = () => {
-  return <Landing />;
+  return (
+    <>
+      <Navbar />
+      <Landing />
+    </>
+  );
 };
 
 export default Home;
