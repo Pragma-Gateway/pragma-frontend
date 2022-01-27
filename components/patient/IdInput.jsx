@@ -1,5 +1,21 @@
 // where the patient inputs their Id
-const IdInput = ({ id, setId, setCurrComp }) => {
+const IdInput = ({ id, setId, setCurrComp, pass, setPass }) => {
+  const signup = async (e) => {
+    let res = await fetch("https://test-pragma-backend.herokuapp.com/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: id, password: pass }),
+    }).catch((e) => alert(e));
+    res = await res.json();
+    // if the token is returned, the user is signed up
+    if (res.token) {
+      setCurrComp(1);
+    }
+  };
+
   return (
     <div className="max-w-full">
       <div className="w-full h-96 grid place-content-center gap-4">
@@ -13,12 +29,25 @@ const IdInput = ({ id, setId, setCurrComp }) => {
           onChange={(e) => setId(e.target.value)}
           value={id}
         />
+        <input
+          placeholder="Enter your password here"
+          type="password"
+          className="rounded pl-2 border-2 h-8"
+          onChange={(e) => setPass(e.target.value)}
+          value={pass}
+        />
         {/* button that lets them proceed to the next page */}
         <p
           className="font-sans font-bold text-3xl hover:text-blue-500 cursor-pointer text-center"
-          onClick={() => setCurrComp(1)}
+          onClick={signup}
         >
-          GO!
+          LOGIN!
+        </p>
+        <p
+          className="font-sans font-bold text-3xl hover:text-blue-500 cursor-pointer text-center"
+          onClick={signup}
+        >
+          SIGNUP!
         </p>
       </div>
     </div>

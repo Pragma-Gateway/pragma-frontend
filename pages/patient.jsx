@@ -6,19 +6,27 @@ import IdInput from "../components/patient/IdInput";
 const Patient = () => {
   // patients unique id
   const [id, setId] = useState("");
+  const [pass, setPass] = useState("");
   // the current page/component the patient is seeing
   // 0 is id, 1 is data input, 2 is data portal
   const [currComp, setCurrComp] = useState(0);
-  // array of the components in order
-  const components = [IdInput, AddData];
 
   if (currComp === 0) {
-    return <IdInput id={id} setId={setId} setCurrComp={setCurrComp} />;
+    return (
+      <IdInput
+        id={id}
+        setId={setId}
+        setCurrComp={setCurrComp}
+        pass={pass}
+        setPass={setPass}
+      />
+    );
   }
   if (currComp === 1) {
     return <AddData id={id} setId={setId} setCurrComp={setCurrComp} />;
   }
 
+  return null;
   // return components[currComp]({ id, setId, setCurrComp });
 };
 
