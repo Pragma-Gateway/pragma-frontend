@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 const Hamburger = ({ open, setOpen }) => {
   return (
@@ -51,18 +52,26 @@ const Sidebar = () => {
       >
         <h3 className="text-4xl text-gray-text font-bold font-el">pragma</h3>
         <div className="space-y-8">
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Health Records
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            My Datasets
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Data Requests
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Listings
-          </h3>
+          <Link href="/hospital/records">
+            <h3 className="text-xl text-gray-text font-normal uppercase">
+              Health Records
+            </h3>
+          </Link>
+          <Link href="/hospital/datasets">
+            <h3 className="text-xl text-gray-text font-normal uppercase">
+              My Datasets
+            </h3>
+          </Link>
+          <Link href="/hospital/requests">
+            <h3 className="text-xl text-gray-text font-normal uppercase">
+              Data Requests
+            </h3>
+          </Link>
+          {/* <Link href="/hospital/listings">
+            <a className="text-xl text-gray-text font-normal uppercase">
+              Listings
+            </a>
+          </Link> */}
         </div>
       </div>
     </>
