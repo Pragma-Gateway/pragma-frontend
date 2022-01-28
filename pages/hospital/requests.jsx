@@ -5,9 +5,6 @@ import {
   SearchSection,
   TitleSection,
 } from "../../components/dataPage/DataPage";
-import Listing from "../../components/dataPage/Listing";
-import Search from "../../components/hospital/Search";
-import Layout from "../../components/Layout";
 
 const listingData = [
   {

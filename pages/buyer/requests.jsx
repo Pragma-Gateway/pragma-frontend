@@ -33,13 +33,13 @@ const listingData = [
   },
 ];
 
-// page that displays past data given from that institution
-const Datasets = () => {
+// page where buyers list of requests are displayed (active and inactive)
+const Requests = () => {
   const [listings, setListings] = useState(listingData);
 
   return (
-    <LayoutContainer title="Datasets">
-      <TitleSection title="Your Requests" subtitle="Review your data" />
+    <LayoutContainer title="Requests">
+      <TitleSection title="Data Requests" subtitle="Review your data" />
       <SearchSection
         setData={setListings}
         originalData={listingData}
@@ -54,4 +54,4 @@ const Datasets = () => {
   );
 };
 
-export default Datasets;
+export default Requests;
