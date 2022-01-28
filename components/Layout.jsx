@@ -7,7 +7,7 @@ const Layout = ({ children, title, className }) => {
   return (
     <>
       <Head>
-        <title>Prigma | {title}</title>
+        <title>Pragma | {title}</title>
       </Head>
       <Sidebar />
       <Topbar />

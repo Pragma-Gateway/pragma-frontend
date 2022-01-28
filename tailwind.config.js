@@ -11,6 +11,9 @@ module.exports = {
         sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
         el: ["El Messiri", ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateColumns: {
+        dataset: "repeat(auto-fill, minmax(350px,1fr))",
+      },
       colors: {
         red: {
           50: "#ffebee",
