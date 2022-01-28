@@ -1,13 +1,10 @@
-import Sidebar from "../../components/Sidebar";
+import Layout from "../../components/Layout";
 
 const Auth = () => {
   return (
-    <>
-      <Sidebar />
-      <div>
-        <h1>Auth</h1>
-      </div>
-    </>
+    <Layout title="Sign In">
+      <p className="">pepepopo oooo</p>
+    </Layout>
   );
 };
 

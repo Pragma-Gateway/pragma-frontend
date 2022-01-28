@@ -13,7 +13,10 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700&display=swap"
           rel="stylesheet"
         />
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap" rel="stylesheet" /> 
+        <link
+          href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Component {...pageProps} />
     </>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Hamburger = ({ open, setOpen }) => {
   return (
-    <div className="flex text-4xl text-text items-center cursor-pointer fixed left-10 top-10 z-50">
+    <div className="flex text-4xl text-text items-center cursor-pointer fixed left-10 top-8 z-50">
       <div className="relative py-3 sm:max-w-xl mx-auto">
         <nav>
           <button
@@ -38,7 +38,7 @@ const Hamburger = ({ open, setOpen }) => {
 };
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   return (
     <>
