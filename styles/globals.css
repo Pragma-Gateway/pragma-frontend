@@ -122,12 +122,26 @@ h6 {
   margin: 1rem;
 }
 
+.ds-wrapper  span {
+  color: var(--main-accent);
+  background-color: white;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin: 0.25rem
+}
+
+.ds-wrapper > .fields {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .dataset-container {
   display:flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  border: 23px solid orange;
+  flex-wrap: wrap;
 }
 
 .main-data-page {
@@ -182,4 +196,22 @@ h6 {
   font-weight: 400;
   margin-bottom: 0.25rem;
   margin-left: 1rem
+}
+
+
+.databar {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.databar > input {
+  width: 35%;
+}
+
+.databar > button {
+  padding: 0.5rem
 }

@@ -11,6 +11,7 @@ const DatasetPage = () => {
     const [datasets, setDatasets] = useState([])
     const router = useRouter()
     const [query, setQuery] = useState("")
+    const [closed, setClosed] = useState(true)
     const getData = async () => {
             const { data } = await axios.get("/database", {headers: {user_auth_token: token}}) 
                                 .catch(err => toast.error("There was an error fetching datasets"))
@@ -26,10 +27,11 @@ const DatasetPage = () => {
         <div className = "main-wrapper-dataset">
             <Sidebar/>
             <div className='main-data-page'>
-                <Databar Query={query} onQueryChange = {setQuery}/> 
+                <Databar Query={query} onNew = {() => setClosed(!closed)} onQueryChange = {setQuery}/> 
                 <DatasetViewer Query={query} datasets={datasets}/>
-                <CreateDSpopup />
             </div>
+
+                {closed || <CreateDSpopup datasets={datasets} setDatasets={setDatasets} closeForm = {() => setClosed(!closed)}/>}
         </div>
     )
 }
@@ -50,18 +52,19 @@ const DatasetViewer = ({ datasets , Query }) => {
     })
     return (
         <div className='dataset-container'>
-                {datasets && datasets.map(d => <DSCard key = {d} dataset={d} />)}
+                {datasets && datasets.map(d => <DSCard key = {d.name} dataset={d} />)}
         </div>
 
     )
 }
 
 const DSCard = ({dataset}) => {
-    const {name, fields} = dataset
+    const {name, fields, _id} = dataset
     return (
         <div className='ds-wrapper'>
             <h3>{name}</h3>
-            {fields && fields.map(f => <span>{f}</span>)}
+            <div className='fields'>{fields && fields.map(f => <span>{f}</span>)}</div>
+            <Link href = {`/datasets/${_id}`}>View Dataset</Link>
         </div>
     )
 }
@@ -69,8 +72,12 @@ const DSCard = ({dataset}) => {
 const Databar = ({onQueryChange, Query, onNew}) => {
     return (
         <div className='databar'>
-            <input value = { Query } type = "text" onChange={e => onQueryChange(e.target.value)} />
-            <button onClick={onNew}>Create New +</button>
+            <input 
+            className = "input-outlined" 
+            value = { Query } type = "text" 
+            onChange={e => onQueryChange(e.target.value)}
+            placeholder = "Search for dataset..." />
+            <button className = "btn-filled" onClick={onNew}>Create New +</button>
         </div>
     )
 }
@@ -81,12 +88,18 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
     const router = useRouter()
     const [name, setName] = useState()
     const [fields, setFields] = useState([])
-
+    const [datapoints, setDatapoints] = useState(0)
+    
 
 
     const submitForm = async () => {
-        const { data } = await axios.post("/database/create", {name, fields}, {headers: {user_auth_token: token}}) 
-        console.log(data)
+
+        const body = {name, fields, datapoints}
+        const headers = {headers: {user_auth_token: token}}
+        const { data } = await axios.post("/database/create", body, headers) 
+        setDatasets([...datasets, data])
+        toast.success("Dataset Created")
+        closeForm()
     }
     return (
         <div className='create-form-wrapper'>
@@ -99,6 +112,10 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
                 <div>
                     <label>Fields/Datapoints (Comma-separated)</label>
                     <input className = "input-outlined" type = "text" onChange={e => setFields(e.target.value.split(","))} />
+                </div>
+                <div>
+                    <label>Number of Entries</label>
+                    <input className = "input-outlined" type = "text" onChange={e => setDatapoints(e.target.value)} />
                 </div>
                 <button className='btn-filled' onClick={submitForm}>Create Dataset</button>
             </div>
