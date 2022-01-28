@@ -49,6 +49,7 @@ const patientRoutes = [
   { name: "Data Requests", path: "/patient/requests" },
   { name: "New Dataset", path: "/patient/newData" },
   { name: "Your Contributions", path: "/patient" },
+  { name: "Your Data", path: "/patient/yourData" },
 ];
 
 const SidebarRoute = ({ path, name }, index) => (
