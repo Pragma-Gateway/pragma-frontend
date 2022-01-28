@@ -162,6 +162,8 @@ h6 {
 .main-data-page {
   display: flex;
   flex-direction: column;
+  width: 70%;
+
 }
 
 .create-form-wrapper {

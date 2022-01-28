@@ -23,8 +23,9 @@ const DatasetPage = () => {
   }, [token]);
 
   return (
-    <div className="main-wrapper-dataset">
+    <div className="main-wrapper">
       <div className="main-data-page">
+        <Databar query={query} onQueryChange={setQuery} onNew = {() => setClosed(!closed)}/>
         <DatasetViewer Query={query} datasets={datasets} />
       </div>
 
@@ -103,7 +104,6 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm }) => {
   };
   return (
     <div className="create-form-wrapper">
-      <AiOutlineClose onClick={closeForm}>Close</AiOutlineClose>
       <div className="form-wrapper">
         <div>
           <label>Name of institution</label>
@@ -150,13 +150,10 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm }) => {
         <button className="btn-filled" onClick={submitForm}>
           Create Dataset
         </button>
+        <button className = "btn" onClick={closeForm}>Close</button>
       </div>
     </div>
   );
-};
-
-const DatasetCard = () => {
-  null;
 };
 
 export default DatasetPage;

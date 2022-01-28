@@ -23,7 +23,6 @@ const ContributionsPage = () => {
         {contributions.map(d => <Link key = {d._id} href = {"/datasets/" + d._id}><span>{d.name} - {d.organization}<br></br></span></Link>)}
 
     </div>
-    <button onClick = {() => GetYourSubmissions(token).then(r => console.log(r))}>Get subs</button>
     </div>
     )
 }
