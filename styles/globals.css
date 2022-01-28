@@ -36,6 +36,7 @@ h6 {
 * {
   box-sizing: border-box;
   font-family: Inter;
+  transition-duration: 200ms;
 }
 
 
@@ -154,11 +155,31 @@ h6 {
   align-self: flex-end;
   margin: 0;
   padding: 0;
-  transform: scale(1.25,1.25);
+  transform: scale(1.25,1.25) translate(0px, -24px);
 }
 
+.create-form-wrapper > svg:hover {
+  background-color: var(--light-shadow);
+} 
 .form-wrapper {
   width: 90%;
   height: 90%;
 }
 
+.form-wrapper {
+  flex-direction: column;
+  display:flex;
+  align-items: center
+}
+
+.form-wrapper > div {
+  display:flex;
+  width: 36rem;
+  display:flex;
+  flex-direction: column;
+}
+.form-wrapper > div > label {
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  margin-left: 1rem
+}

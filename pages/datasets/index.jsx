@@ -84,20 +84,23 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
 
 
 
-    const submitForm = () => {console.log({name, fields})}
+    const submitForm = async () => {
+        const { data } = await axios.post("/database/create", {name, fields}, {headers: {user_auth_token: token}}) 
+        console.log(data)
+    }
     return (
         <div className='create-form-wrapper'>
             <AiOutlineClose onClick={closeForm}>Close</AiOutlineClose>
             <div className='form-wrapper'>
                 <div>
                     <label>Name of Dataset</label>
-                    <input type = "text" onChange={e => setName(e.target.value)} />
+                    <input className = "input-outlined" type = "text" onChange={e => setName(e.target.value)} />
                 </div>
                 <div>
                     <label>Fields/Datapoints (Comma-separated)</label>
-                    <input type = "text" onChange={e => setFields(e.target.value.split(","))} />
+                    <input className = "input-outlined" type = "text" onChange={e => setFields(e.target.value.split(","))} />
                 </div>
-                <button className='btn-filled' onClick={submitForm}>Submit</button>
+                <button className='btn-filled' onClick={submitForm}>Create Dataset</button>
             </div>
         </div>
     )
