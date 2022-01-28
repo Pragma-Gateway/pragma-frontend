@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
 import {
   LayoutContainer,
   ListingSection,
   SearchSection,
   TitleSection,
 } from "../../components/dataPage/DataPage";
+import { getDatasetPageData } from "../../components/helpers";
+import { useAuthRedirect } from "../../components/hooks/useAuthRedirect";
+import { useAuth } from "../../contexts/authContext";
 
 const listingData = [
   {
@@ -32,36 +37,54 @@ const listingData = [
     id: 2,
   },
 ];
+// changes backend data to match the format of the data page
+const DatasetFrontendSchema = ({ item }) => {
+  let returnObj = {};
+  returnObj.id = item._id;
+  returnObj.institution = item.institution;
+  returnObj.name = item.name;
+  returnObj.entries = item.datapoints;
+  returnObj.columns = item?.fields?.length;
+  returnObj.fields = item.fields;
+  returnObj.price = item.offer;
+  returnObj.description = item.description;
+  return returnObj;
+};
 
 // page where buyers list of requests are displayed (active and inactive)
 const Requests = () => {
   // const [listings, setListings] = useState(listingData);
-  const token = useAuthRedirect();
+  const router = useRouter();
+  const [token] = useAuth();
   const [originalDataset, setOriginalDataset] = useState([]);
   const [datasets, setDatasets] = useState([]);
 
   useEffect(() => {
     if (token) {
       getDatasetPageData({ token }).then((data) => {
-        setDatasets(data);
-        setOriginalDataset(data);
+        const newData = data.map((item) => DatasetFrontendSchema({ item }));
+        setDatasets(newData);
+        setOriginalDataset(newData);
       });
+    } else {
+      router.push("/login");
     }
   }, [token]);
 
   return (
     <LayoutContainer title="Requests">
       <TitleSection title="Data Requests" subtitle="Review your data" />
+      {console.log({ datasets, token })}
       <SearchSection
-        setData={setListings}
-        originalData={listingData}
+        setData={setDatasets}
+        originalData={originalDataset}
         options={{
           includeScore: false,
           // Search in `author` and in `tags` array
           keys: ["id", "institution", "name", "entries", "columns", "offer"],
         }}
       />
-      <ListingSection listings={listings} />
+      <ListingSection btnName="View Dataset" listings={datasets} />
     </LayoutContainer>
   );
 };

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Search from "../hospital/Search";
 import Layout from "../Layout";
 import Listing from "./Listing";
@@ -36,6 +37,7 @@ const TitleSection = ({ title, subtitle }) => {
 };
 
 const ListingSection = ({ listings, btnName, onClick }) => {
+  const router = useRouter();
   return (
     <>
       {/* the list of datasets */}
@@ -45,7 +47,8 @@ const ListingSection = ({ listings, btnName, onClick }) => {
             key={listing.id}
             data={listing}
             btnName={btnName}
-            onClick={() => onClick(index)}
+            // onClick={() => onClick(index)}
+            onClick={() => router.push(`/datasets/${listing.id}`)}
           />
         ))}
       </div>
