@@ -35,7 +35,19 @@ const listingData = [
 
 // page where buyers list of requests are displayed (active and inactive)
 const Requests = () => {
-  const [listings, setListings] = useState(listingData);
+  // const [listings, setListings] = useState(listingData);
+  const token = useAuthRedirect();
+  const [originalDataset, setOriginalDataset] = useState([]);
+  const [datasets, setDatasets] = useState([]);
+
+  useEffect(() => {
+    if (token) {
+      getDatasetPageData({ token }).then((data) => {
+        setDatasets(data);
+        setOriginalDataset(data);
+      });
+    }
+  }, [token]);
 
   return (
     <LayoutContainer title="Requests">
