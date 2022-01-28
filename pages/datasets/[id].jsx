@@ -39,7 +39,7 @@ const DatasetPage = () => {
         <h2>{name}</h2>
         <p>{organization}</p>
         <br></br>
-        <div style = {{overflow: "hidden"}}>
+        <div class = "aaa">
           Tags: {fields && fields.map((f) => <span key = {f} className="blob">{f}</span>)}
         </div>
         <br></br>

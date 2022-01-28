@@ -283,3 +283,12 @@ h6 {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.aaa {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.aaa >span {
+  margin-bottom: 0.25rem;
+}
