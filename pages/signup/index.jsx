@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
 import { ThirdwebWeb3Provider, useWeb3 } from "@3rdweb/hooks";
+import { useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import axios from "axios"
 
@@ -10,13 +10,16 @@ const LoginPage = () => {
     const [token, setToken] = useAuth()
 
     const login = async () => {
-
-        const { data } = await axios.post("/login", {
+        console.log({
             username: address,
             password
         })
-        const { token } = data;
-        console.log(token)
+
+        // const { data } = await axios.post("/signup", {
+        //     username: address,
+        //     password
+        // })
+        // const { token } = data;
     }
 
     return (
@@ -34,6 +37,8 @@ const LoginPage = () => {
             </div>
         </div>
     )
+
+  
 }
 
 export default LoginPage

@@ -3,16 +3,24 @@ import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import Navbar from "../components/navbar/Index";
 import "../styles/globals.css";
 import axios from "axios"
+import { AuthContext } from "../contexts/authContext"
+import { useState } from "react"
 
-axios.defaults.baseURL = (process.env.NODE_ENV == "production") ? "" : "http://localhost:3001"
+
+axios.defaults.baseURL = (process.env.NODE_ENV == "production") 
+                        ? process.env.REACT_APP_API_URL
+                        : "http://localhost:3001"
+
 
 function MyApp({ Component, pageProps }) {
   const supportedChainIds = [80001, 4];
   const connectors = {injected: {}};
+  const [token, setToken] = useState("")
 
 
   return (
-    <>
+   <AuthContext.Provider value={[token, setToken]}>
+      <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,6 +40,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ThirdwebWeb3Provider>
     </>
+   </AuthContext.Provider>
   );
 }
 
