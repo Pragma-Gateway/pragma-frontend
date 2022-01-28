@@ -17,3 +17,4 @@ export const getContributions = async (token) => {
   const { data } = await axios.get("/contributions", {headers: { user_auth_token: token }})
   return data.databaseContributions
 }
+
