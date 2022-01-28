@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Hamburger = ({ open, setOpen }) => {
   return (
@@ -37,8 +39,29 @@ const Hamburger = ({ open, setOpen }) => {
   );
 };
 
+const hospitalRoutes = [
+  { name: "Health Records", path: "/hospital/records" },
+  { name: "My Datasets", path: "/hospital/datasets" },
+  { name: "Data Requests", path: "/hospital/requests" },
+];
+
+const buyRoutes = [
+  { name: "Data Requests", path: "/buyer/requests" },
+  { name: "New Dataset", path: "/buyer/newDataset" },
+];
+
+const SidebarRoute = ({ path, name }, index) => (
+  <Link href={path} key={index}>
+    <h3 className="text-xl text-gray-text font-normal uppercase cursor-pointer">
+      {name}
+    </h3>
+  </Link>
+);
+
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const { asPath } = useRouter();
+
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <>
@@ -50,19 +73,12 @@ const Sidebar = () => {
         }`}
       >
         <h3 className="text-4xl text-gray-text font-bold font-el">pragma</h3>
+        {/* display different routes if they're a hospital or buying the data  */}
+        {console.log(asPath)}
         <div className="space-y-8">
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Health Records
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            My Datasets
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Data Requests
-          </h3>
-          <h3 className="text-xl text-gray-text font-normal uppercase">
-            Listings
-          </h3>
+          {asPath.includes("/hospital")
+            ? hospitalRoutes.map(SidebarRoute)
+            : buyRoutes.map(SidebarRoute)}
         </div>
       </div>
     </>

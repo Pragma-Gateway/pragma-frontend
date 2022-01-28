@@ -12,11 +12,6 @@ const LoginPage = () => {
     const router = useRouter()
 
     const login = async () => {
-        console.log({
-            username: address,
-            password
-            
-        })
             try {
                 const { data } = await axios.post("/signup", {
                 username: address,

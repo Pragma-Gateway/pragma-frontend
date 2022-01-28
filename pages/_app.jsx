@@ -7,13 +7,22 @@ import { AuthContext } from "../contexts/authContext"
 import { useState } from "react"
 import {toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-toast.configure()
+import "nprogress/nprogress.css";
+import dynamic from "next/dynamic";
 
+toast.configure()
 
 axios.defaults.baseURL = (process.env.NODE_ENV == "production") 
                         ? process.env.REACT_APP_API_URL
                         : "http://localhost:3001"
 
+// import dynamic so its not impoeted on server side
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false }
+);
 
 function MyApp({ Component, pageProps }) {
   const supportedChainIds = [80001, 4];

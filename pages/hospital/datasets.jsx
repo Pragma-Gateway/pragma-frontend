@@ -1,66 +1,68 @@
-import Layout from "../../components/Layout";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+// import {
+//   LayoutContainer,
+//   ListingSection,
+//   SearchSection,
+//   TitleSection,
+// } from "../../components/dataPage/DataPage";
+// import { useAuth } from "../../contexts/authContext";
 
-const Listing = () => {
-  return (
-    <div className="grid gap-1 rounded-lg border-gray-text border-2 w-[max-content] p-4 mt-10">
-      <p className="text-sm font-normal text-gray-text">
-        TORONTO GENERAL HOSPITAL
-      </p>
-      <p className="text-md font-normal text-gray-text">
-        Name: Diabetes Records
-      </p>
-      <p className="text-sm font-normal text-gray-text">Entries: 20</p>
-      <p className="text-sm font-normal text-gray-text">Columns: 6</p>
-      <p className="text-sm font-normal text-gray-text">Offer: 2.0 ETH</p>
-      {/* opt-in button */}
-      <div className="bg-gray-text p-2 px-6 w-[10rem] rounded-r-full rounded-l-full">
-        <p className="text-sm font-normal text-white text-center">
-          Upload to listing
-        </p>
-      </div>
-    </div>
-  );
-};
-// page that displays past data given from that institution
-const Datasets = () => {
-  return (
-    <Layout title="Datasets" className="ml-[20vw] mt-[8rem]">
-      <div className="mt-10 grid grid-rows-[repeat(4,auto)] grid-cols-[auto] gap-2">
-        <p className="text-4xl font-bold text-gray-text">Datasets</p>
-        <p className="text-lg font-normal text-gray-text">
-          Review your datasets
-        </p>
-        {/* search bar row */}
-        {/* <div> */}
-        {/* added div for mobile compatability (for line break with inputs) */}
-        {/* search abr div */}
-        <div className="flex space-x-4 pt-2">
-          <p className="text-lg font-normal text-gray-text">Search</p>
-          <input
-            className="rounded border-gray-text border-2 focus:border-gray-text"
-            type="text"
-          />
-        </div>
-        {/* filter div */}
-        {/* removed the filter for ease of implementation */}
-        {/* <div>
-            <p className="text-lg font-normal text-gray-text">filter</p>
-            <input className="rounded border-gray-text border-2" type="text" />
-          </div> */}
-        {/* </div> */}
-        {/* the list of datasets */}
-        <div className="grid grid-cols-dataset">
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-        </div>
-      </div>
-    </Layout>
-  );
-};
+// const listingData = [
+//   {
+//     institution: "TORONTO GENERAL HOSPITAL",
+//     name: "Diabetes Records",
+//     entries: 20,
+//     columns: 6,
+//     offer: 2.0,
+//     id: 0,
+//   },
+//   {
+//     institution: "Cancer Research Institute",
+//     name: "Glioblastoma Records",
+//     entries: 50,
+//     columns: 8,
+//     offer: 5.0,
+//     id: 1,
+//   },
+//   {
+//     institution: "Platlet Society",
+//     name: "Thrombocytopenia Records",
+//     entries: 100,
+//     columns: 15,
+//     offer: 2.0,
+//     id: 2,
+//   },
+// ];
 
-export default Datasets;
+
+// // page that displays past data given from that institution
+// const Datasets = () => {
+//   const [listings, setListings] = useState(listingData);
+//   const [data, setData] = useState([])
+//   const [token, setToken] = useAuth()
+//   const GetData = async () => {
+//     const { data } = await axios.get("/database", {user_auth_token: token})
+//     return data
+//   }
+//   useEffect(() => {
+//     if (token) GetData().then(r => setData(r))
+//   })
+//   return (
+//     <LayoutContainer title="Datasets">
+//       <TitleSection title="Your Requests" subtitle="Review your data" />
+//       <SearchSection
+//         setData={setListings}
+//         originalData={}
+//         options={{
+//           includeScore: false,
+//           // Search in `author` and in `tags` array
+//           keys: ["id", "institution", "name", "entries", "columns", "offer"],
+//         }}
+//       />
+//       <ListingSection listings={listings} />
+//     </LayoutContainer>
+//   );
+// };
+
+// export default Datasets;

@@ -21,7 +21,7 @@ const LoginPage = () => {
             const { token } = data;
             toast.info("Logged in!")
             setToken(token)
-            router.push("/")
+            router.back()
        }
        catch(err) {
            console.log(err.toJSON())
