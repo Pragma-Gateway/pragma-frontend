@@ -19,7 +19,6 @@ const PagesList = ({ screenSize }) => {
       <li>
         <Link href="/">
           <a
-            href="/"
             aria-label="Home"
             title="Home"
             className={tailwindStyles[screenSize].a}
@@ -42,7 +41,6 @@ const PagesList = ({ screenSize }) => {
       <li>
         <Link href="/datasets">
           <a
-            href="/"
             aria-label="Institution"
             title="Institution"
             className={tailwindStyles[screenSize].a}
