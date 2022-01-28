@@ -39,7 +39,7 @@ const PagesList = ({ screenSize }) => {
         </Link>
       </li>
       <li>
-        <Link href="/patient/requests">
+        <Link href="/datasets">
           <a
             aria-label="Institution"
             title="Institution"
