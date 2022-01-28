@@ -40,14 +40,14 @@ const PagesList = ({ screenSize }) => {
         </Link>
       </li>
       <li>
-        <Link href="/institution">
+        <Link href="/datasets">
           <a
             href="/"
             aria-label="Institution"
             title="Institution"
             className={tailwindStyles[screenSize].a}
           >
-            Institution
+            Datasets
           </a>
         </Link>
       </li>

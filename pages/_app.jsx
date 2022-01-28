@@ -1,8 +1,21 @@
 import Head from "next/head";
+import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
+import Navbar from "../components/navbar/Index";
+import "../styles/globals.css";
+import axios from "axios"
+import { AuthContext } from "../contexts/authContext"
+import { useState } from "react"
+import {toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 import "nprogress/nprogress.css";
 import dynamic from "next/dynamic";
 
-import "../styles/globals.css";
+toast.configure()
+
+axios.defaults.baseURL = (process.env.NODE_ENV == "production") 
+                        ? process.env.REACT_APP_API_URL
+                        : "http://localhost:3001"
+
 // import dynamic so its not impoeted on server side
 const TopProgressBar = dynamic(
   () => {
@@ -12,9 +25,14 @@ const TopProgressBar = dynamic(
 );
 
 function MyApp({ Component, pageProps }) {
+  const supportedChainIds = [80001, 4];
+  const connectors = {injected: {}};
+  const [token, setToken] = useState("")
+
+
   return (
-    <>
-      <TopProgressBar />
+   <AuthContext.Provider value={[token, setToken]}>
+      <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,8 +45,14 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <ThirdwebWeb3Provider
+        supportedChainIds={supportedChainIds}
+        connectors={connectors}
+        > 
+          <Component {...pageProps} />
+        </ThirdwebWeb3Provider>
     </>
+   </AuthContext.Provider>
   );
 }
 
