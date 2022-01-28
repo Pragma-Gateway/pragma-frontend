@@ -89,12 +89,14 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
     const [name, setName] = useState()
     const [fields, setFields] = useState([])
     const [datapoints, setDatapoints] = useState(0)
+    const [description, setDescription] = useState("")
     
 
 
     const submitForm = async () => {
 
-        const body = {name, fields, datapoints}
+        const body = {name, fields, datapoints, description}
+        console.log(body)
         const headers = {headers: {user_auth_token: token}}
         const { data } = await axios.post("/database/create", body, headers) 
         setDatasets([...datasets, data])
@@ -115,7 +117,11 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
                 </div>
                 <div>
                     <label>Number of Entries</label>
-                    <input className = "input-outlined" type = "text" onChange={e => setDatapoints(e.target.value)} />
+                    <input value = {datapoints} className = "input-outlined" type = "number" onChange={e => setDatapoints(e.target.value)} />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input value = {description} className = "input-outlined" type = "text" onChange={e => setDescription(e.target.value)} />
                 </div>
                 <button className='btn-filled' onClick={submitForm}>Create Dataset</button>
             </div>
