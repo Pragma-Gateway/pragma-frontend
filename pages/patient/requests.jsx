@@ -59,7 +59,7 @@ const Requests = () => {
     } else {
       router.push("/login");
     }
-  }, [token]);
+  }, [token, router]);
 
   return (
     <LayoutContainer title="Requests">

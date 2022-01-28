@@ -20,7 +20,7 @@ const ContributionsPage = () => {
     <div className='contribution-wrapper'>
 
     <h3>Your Contributions</h3>
-        {contributions.map(d => <Link href = {"/datasets/" + d._id}><span>{d.name} - {d.organization}<br></br></span></Link>)}
+        {contributions.map(d => <Link key = {d._id} href = {"/datasets/" + d._id}><span>{d.name} - {d.organization}<br></br></span></Link>)}
 
     </div>
     </div>
