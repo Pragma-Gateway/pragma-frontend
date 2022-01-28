@@ -26,7 +26,7 @@ const ContributionsPage = () => {
         setContributions(newData);
       });
     } else router.push("/login");
-  }, []);
+  }, [router, token]);
   return (
     <LayoutContainer title="Your Contributions">
       <TitleSection

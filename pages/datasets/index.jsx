@@ -58,7 +58,7 @@ const DSCard = ({ dataset }) => {
     <div className="ds-wrapper">
       <h3>{name}</h3>
       <div className="fields">
-        {fields && fields.map((f) => <span>{f}</span>)}
+        {fields && fields.map((f) => <span key = {f}>{f}</span>)}
       </div>
       <br></br>
       <Link href={`/datasets/${_id}`}>View Dataset</Link>
