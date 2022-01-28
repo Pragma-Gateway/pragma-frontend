@@ -6,30 +6,57 @@ import {
   TitleSection,
 } from "../../components/dataPage/DataPage";
 
-const listingData = [
+const hospitalList = [
   {
     institution: "TORONTO GENERAL HOSPITAL",
-    name: "Diabetes Records",
-    entries: 20,
-    columns: 6,
-    offer: 2.0,
-    id: 0,
   },
   {
-    institution: "Cancer Research Institute",
-    name: "Glioblastoma Records",
-    entries: 50,
-    columns: 8,
-    offer: 5.0,
-    id: 1,
+    institution: "SickKids Hospital",
   },
   {
-    institution: "Platlet Society",
-    name: "Thrombocytopenia Records",
-    entries: 100,
-    columns: 15,
-    offer: 2.0,
-    id: 2,
+    institution: "Mount Sinai Hospital",
+  },
+  {
+    institution: "Mount Sinai Hospital",
+  },
+  {
+    institution: "John Hopkins Hospital",
+  },
+];
+
+const featuresList = [
+  {
+    name: "COPD",
+  },
+  {
+    name: "CKD",
+  },
+  {
+    name: "WBC",
+  },
+  {
+    name: "Smoker",
+  },
+  {
+    name: "Diabetes",
+  },
+  {
+    name: "HIV",
+  },
+  {
+    name: "Liver Disease",
+  },
+  {
+    name: "Asthma",
+  },
+  {
+    name: "Heart Disease",
+  },
+  {
+    name: "Cancer",
+  },
+  {
+    name: "Blood Pressure",
   },
 ];
 
@@ -49,9 +76,13 @@ const InputSection = ({ value, setValue, name }) => {
 
 // page that displays past data given from that institution
 const NewDataset = () => {
-  // const [listings, setListings] = useState(listingData);
-  // const [listings, setListings] = useState(listingData);
   const [name, setName] = useState("");
+  const [offer, setOffer] = useState(0);
+  const [entries, setEntries] = useState(0);
+  const [hospitals, setHospitals] = useState(hospitalList);
+  const [features, setFeatures] = useState(featuresList);
+  const [selectedHospitals, setSelectedHospitals] = useState(false);
+  const [selectedFeatures, setSelectedFeatures] = useState(false);
 
   return (
     <LayoutContainer title="New Dataset">
@@ -59,19 +90,97 @@ const NewDataset = () => {
         title="Create a new dataset"
         subtitle="Request a new dataset, select which boxes fit your criteria"
       />
-      {/* section for adding data
+      <InputSection name="Dataset name" setValue={setName} value={name} />
+      <InputSection
+        name="Offer price (ETH)"
+        setValue={setOffer}
+        value={offer}
+      />
+      <InputSection
+        name="Entries per hospital"
+        setValue={setEntries}
+        value={entries}
+      />
+
+      <p className="text-lg font-normal text-gray-text">
+        Add Institutions to collect data from, you've selected:{" "}
+        {selectedHospitals
+          ? selectedHospitals.map(({ institution }, index) => (
+              <span
+                className="hover:text-red-500 cursor-pointer"
+                key={index}
+                // TODO: fix this saad
+                // onClick={() =>
+                //   setSelectedHospitals(selectedHospitals.splice(index, 1))
+                // }
+              >
+                {institution},
+              </span>
+            ))
+          : "None"}{" "}
+      </p>
+      {/* section for adding data */}
       <SearchSection
-        setData={setListings}
-        originalData={listingData}
+        setData={setHospitals}
+        originalData={hospitalList}
         options={{
           includeScore: false,
           // Search in `author` and in `tags` array
-          keys: ["id", "institution", "name", "entries", "columns", "offer"],
+          keys: ["institution"],
         }}
-      /> */}
-      <InputSection name="Dataset name" setValue={setName} value={name} />
-      <InputSection name="Dataset name" setValue={setName} value={name} />
-      {/* <ListingSection listings={listings} /> */}
+      />
+      <ListingSection
+        onClick={(index) =>
+          selectedHospitals
+            ? setSelectedHospitals([...selectedHospitals, hospitals[index]])
+            : setSelectedHospitals([hospitals[index]])
+        }
+        btnName="Add to list"
+        listings={hospitals}
+      />
+      {/* section for finding features  */}
+      <p className="text-lg font-normal text-gray-text">
+        Add which data entries you're looking for:{" "}
+        {selectedFeatures
+          ? selectedFeatures.map(({ name }, index) => (
+              <span
+                className="hover:text-red-500 cursor-pointer"
+                key={index}
+                // TODO: fix this saad
+                // onClick={() =>
+                //   setSelectedHospitals(selectedHospitals.splice(index, 1))
+                // }
+              >
+                {name},
+              </span>
+            ))
+          : "None"}{" "}
+      </p>
+      <SearchSection
+        setData={setFeatures}
+        originalData={featuresList}
+        options={{
+          includeScore: false,
+          // Search in `author` and in `tags` array
+          keys: ["feature"],
+        }}
+      />
+      <ListingSection
+        onClick={(index) =>
+          selectedFeatures
+            ? setSelectedFeatures([...selectedFeatures, features[index]])
+            : setSelectedFeatures([features[index]])
+        }
+        btnName="Add to list"
+        listings={features}
+      />
+      {/* submit button */}
+      <div
+        className="bg-gray-text p-2 px-6 w-[10rem] rounded-r-full rounded-l-full cursor-pointer"
+        onClick={() => alert("Saad, please implement this")}
+      >
+        <p className="text-sm font-normal text-white text-center">Submit!</p>
+      </div>
     </LayoutContainer>
   );
 };

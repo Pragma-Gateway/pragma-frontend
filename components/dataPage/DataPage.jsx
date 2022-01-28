@@ -35,13 +35,18 @@ const TitleSection = ({ title, subtitle }) => {
   );
 };
 
-const ListingSection = ({ listings }) => {
+const ListingSection = ({ listings, btnName, onClick }) => {
   return (
     <>
       {/* the list of datasets */}
       <div className="grid grid-cols-dataset">
-        {listings.map((listing) => (
-          <Listing key={listing.id} data={listing} />
+        {listings.map((listing, index) => (
+          <Listing
+            key={listing.id}
+            data={listing}
+            btnName={btnName}
+            onClick={() => onClick(index)}
+          />
         ))}
       </div>
     </>
