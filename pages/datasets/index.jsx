@@ -59,11 +59,12 @@ const DatasetViewer = ({ datasets , Query }) => {
 }
 
 const DSCard = ({dataset}) => {
-    const {name, fields, _id} = dataset
+    const {name, fields, _id, description} = dataset
     return (
         <div className='ds-wrapper'>
             <h3>{name}</h3>
             <div className='fields'>{fields && fields.map(f => <span>{f}</span>)}</div>
+            <br></br>
             <Link href = {`/datasets/${_id}`}>View Dataset</Link>
         </div>
     )
@@ -90,12 +91,13 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
     const [fields, setFields] = useState([])
     const [datapoints, setDatapoints] = useState(0)
     const [description, setDescription] = useState("")
+    const [organization, setOrg] = useState("")
     
 
 
     const submitForm = async () => {
 
-        const body = {name, fields, datapoints, description}
+        const body = {name, fields, datapoints, description, organization}
         console.log(body)
         const headers = {headers: {user_auth_token: token}}
         const { data } = await axios.post("/database/create", body, headers) 
@@ -107,6 +109,10 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
         <div className='create-form-wrapper'>
             <AiOutlineClose onClick={closeForm}>Close</AiOutlineClose>
             <div className='form-wrapper'>
+                <div>
+                    <label>Name of institution</label>
+                    <input className = "input-outlined" type = "text" onChange={e => setOrg(e.target.value)} />
+                </div>
                 <div>
                     <label>Name of Dataset</label>
                     <input className = "input-outlined" type = "text" onChange={e => setName(e.target.value)} />
@@ -121,7 +127,7 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
                 </div>
                 <div>
                     <label>Description</label>
-                    <input value = {description} className = "input-outlined" type = "text" onChange={e => setDescription(e.target.value)} />
+                    <textarea value = {description} className = "input-outlined" type = "text" onChange={e => setDescription(e.target.value)} />
                 </div>
                 <button className='btn-filled' onClick={submitForm}>Create Dataset</button>
             </div>
