@@ -40,7 +40,7 @@ const DatasetPage = () => {
         <p>{organization}</p>
         <br></br>
         <div class = "aaa">
-          Tags: {fields && fields.map((f) => <span key = {f} className="blob">{f}</span>)}
+          {fields && fields.map((f) => <span key = {f} className="blob">{f}</span>)}
         </div>
         <br></br>
         <br></br>
