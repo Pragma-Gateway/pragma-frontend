@@ -53,17 +53,17 @@ const Sidebar = () => {
         <h3 className="text-4xl text-gray-text font-bold font-el">pragma</h3>
         <div className="space-y-8">
           <Link href="/hospital/records">
-            <h3 className="text-xl text-gray-text font-normal uppercase">
+            <h3 className="text-xl text-gray-text font-normal uppercase cursor-pointer">
               Health Records
             </h3>
           </Link>
           <Link href="/hospital/datasets">
-            <h3 className="text-xl text-gray-text font-normal uppercase">
+            <h3 className="text-xl text-gray-text font-normal uppercase cursor-pointer">
               My Datasets
             </h3>
           </Link>
           <Link href="/hospital/requests">
-            <h3 className="text-xl text-gray-text font-normal uppercase">
+            <h3 className="text-xl text-gray-text font-normal uppercase cursor-pointer">
               Data Requests
             </h3>
           </Link>

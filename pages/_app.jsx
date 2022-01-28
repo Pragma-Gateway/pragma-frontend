@@ -1,11 +1,20 @@
 import Head from "next/head";
+import "nprogress/nprogress.css";
+import dynamic from "next/dynamic";
 
-import Navbar from "../components/navbar/Index";
 import "../styles/globals.css";
+// import dynamic so its not impoeted on server side
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false }
+);
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <TopProgressBar />
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
