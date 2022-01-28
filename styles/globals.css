@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --main-accent: #6520ff;
+  --light-shadow: rgb(196, 196, 196);
+}
 
 html,
 body,
@@ -32,4 +36,62 @@ h6 {
 * {
   box-sizing: border-box;
   font-family: Inter;
+}
+
+
+
+.btn , .btn-filled {
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 2px solid var(--main-accent);
+  color: var(--main-accent);
+  margin: 1rem
+}
+
+
+.btn-filled {
+  /* font-family: poppins; */
+  color:white;
+  border: none;
+  background-color: var(--main-accent);
+}
+
+.login-box {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  height: 400px;
+  width: min(680px, 90%);
+  box-shadow: 0 0 4px 1px var(--light-shadow);
+}
+
+.blob, .blob-filled {
+  padding: 0.5rem;
+  border-radius: 2px;
+  color:var(--main-accent);
+  font-weight: 500;
+  border: 2px solid var(--main-accent)
+}
+.blob-filled {
+  background-color: var(--main-accent);
+  color: white
+}
+
+.main-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-outlined {
+  padding: 0.5rem;
+  border-radius: 4px;
+  color:var(--main-accent);
+  font-weight: 500;
+  border: 2px solid var(--main-accent);
+  margin: 1rem
 }

@@ -1,9 +1,16 @@
 import Head from "next/head";
-
+import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import Navbar from "../components/navbar/Index";
 import "../styles/globals.css";
+import axios from "axios"
+
+axios.defaults.baseURL = (process.env.NODE_ENV == "production") ? "" : "http://localhost:3001"
 
 function MyApp({ Component, pageProps }) {
+  const supportedChainIds = [80001, 4];
+  const connectors = {injected: {}};
+
+
   return (
     <>
       <Head>
@@ -18,7 +25,12 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <ThirdwebWeb3Provider
+        supportedChainIds={supportedChainIds}
+        connectors={connectors}
+        > 
+          <Component {...pageProps} />
+        </ThirdwebWeb3Provider>
     </>
   );
 }
