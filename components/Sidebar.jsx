@@ -51,7 +51,7 @@ const buyRoutes = [
 ];
 
 const SidebarRoute = ({ path, name }, index) => (
-  <Link href={path} key={index}>
+  <Link href={path} key={index} passHref={false}>
     <h3 className="text-xl text-gray-text font-normal uppercase cursor-pointer">
       {name}
     </h3>

@@ -25,7 +25,7 @@ const Search = ({ options, setData, originalData }) => {
       const result = fuse.search(value);
       setData(fuseToSearchResults(result));
     }
-  }, [value]);
+  }, [value, fuse, setData]);
 
   return (
     <input

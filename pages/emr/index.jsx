@@ -26,18 +26,20 @@ export const EMRpage = () => {
     }
     
 
-    useEffect( async () => {
+    useEffect(() => {
         if (token) {    
-            const {name: Name, age: Age, weight: Weight, height: Height, notes: Notes, dateOfPrevVisit: DateOfPrevVisit} = await getEMRData(token)
-            setName(Name)
-            setAge(Age)
-            setWeight(Weight)
-            setHeight(Height)
-            setNotes(Notes)
-            setDateOfPrevVisit(DateOfPrevVisit)
+             getEMRData(token).then(data => {
+                const {name: Name, age: Age, weight: Weight, height: Height, notes: Notes, dateOfPrevVisit: DateOfPrevVisit} = data
+                setName(Name)
+                setAge(Age)
+                setWeight(Weight)
+                setHeight(Height)
+                setNotes(Notes)
+                setDateOfPrevVisit(DateOfPrevVisit)
+            } )
         } 
         else router.push("/login")
-    }, [])
+    }, [token])
 
 
     return (
