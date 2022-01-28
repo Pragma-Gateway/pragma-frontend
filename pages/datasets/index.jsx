@@ -27,6 +27,7 @@ const DatasetPage = () => {
             <div className='main-data-page'>
                 <Databar Query={query} onQueryChange = {setQuery}/> 
                 <DatasetViewer Query={query} datasets={datasets}/>
+                <CreateDSpopup />
             </div>
         </div>
     )
@@ -71,6 +72,15 @@ const Databar = ({onQueryChange, Query, onNew}) => {
             <button onClick={onNew}>Create New +</button>
         </div>
     )
+}
+
+
+const CreateDSpopup = () => {
+    const [token, setToken] = useAuth()
+    const router = useRouter()
+
+    return <button onClick={router.reload}>reload</button>
+
 }
 
 
