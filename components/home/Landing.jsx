@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const CardFeature = ({ feature, color }) => (
   <li className="flex items-center">
     <div className="mr-2">
@@ -53,12 +55,13 @@ const LandingCard = ({ use, color, price, features, subtext }) => (
       </div>
     </div>
     <div>
-      <a
+      <Link 
+        passHref={false}
         href="/"
         className="inline-flex items-center justify-center w-full h-12 px-6 mb-4 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
       >
         Start for {price}
-      </a>
+      </Link>
       <p className="text-sm text-gray-600">{subtext}</p>
     </div>
   </div>

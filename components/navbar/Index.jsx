@@ -71,13 +71,14 @@ const Navbar = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     {/* logo to be changed */}
-                    <a
+                    <Link
+                      passHref={false}
                       href="/"
                       aria-label="Pragma"
                       title="Pragma"
                       className="inline-flex items-center"
                     >
-                      <svg
+                      {/* <svg
                         className="w-8 text-deep-purple-accent-400"
                         viewBox="0 0 24 24"
                         strokeLinejoin="round"
@@ -91,11 +92,11 @@ const Navbar = () => {
                         <rect x="3" y="17" width="7" height="6" />
                         <rect x="14" y="1" width="7" height="6" />
                         <rect x="14" y="11" width="7" height="12" />
-                      </svg>
+                      </svg> */}
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         Pragma
                       </span>
-                    </a>
+                    </Link>
                   </div>
                   <div>
                     <button

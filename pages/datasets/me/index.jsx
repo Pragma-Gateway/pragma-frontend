@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../contexts/authContext';
 import { getContributions } from '../../../components/helpers';
 const ContributionsPage = () => {
@@ -13,7 +13,11 @@ const ContributionsPage = () => {
         }
         else router.push("/login")
     }) 
-    return <div></div>
+    return (
+    <div className='main-wrapper'> 
+        {contributions.map(d => <span>{d.name}</span>)}
+    </div>
+    )
 }
 
 export default ContributionsPage

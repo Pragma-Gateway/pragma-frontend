@@ -26,7 +26,7 @@ const DatasetPage = () => {
     useEffect(() => {
         if (!token) router.push("/login")
         getDataset().then(d => setDataset(d))
-    }, [])
+    }, [getDataset, router, token])
 
     if (!dataset) return <div></div>
     const {name, fields, datapoints, description, organization} = dataset

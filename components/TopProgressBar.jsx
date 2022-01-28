@@ -53,7 +53,6 @@ window.fetch = async function (...args) {
     }
   }
 };
+const test = () => <div></div>
 
-export default function () {
-  return null;
-}
+export default test
