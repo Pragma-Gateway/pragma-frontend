@@ -75,11 +75,18 @@ const Databar = ({onQueryChange, Query, onNew}) => {
 }
 
 
-const CreateDSpopup = () => {
+const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
     const [token, setToken] = useAuth()
     const router = useRouter()
+    const [name, setName] = useState()
+    const [fields, setFields] = useState([])
 
-    return <button onClick={router.reload}>reload</button>
+    return (
+        <div className='create-form-wrapper'>
+            <button onClick={closeForm}>Close</button>
+            
+        </div>
+    )
 
 }
 
