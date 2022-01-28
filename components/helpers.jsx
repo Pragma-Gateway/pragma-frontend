@@ -28,3 +28,17 @@ export const getContributions = async (token) => {
   });
   return data.databaseContributions;
 };
+
+// changes backend data to match the format of the data page
+export const DatasetFrontendSchema = ({ item }) => {
+  let returnObj = {};
+  returnObj.id = item?._id;
+  returnObj.institution = item?.institution;
+  returnObj.name = item?.name;
+  returnObj.entries = item?.datapoints;
+  returnObj.columns = item?.fields?.length;
+  returnObj.fields = item?.fields;
+  returnObj.price = item?.offer;
+  returnObj.description = item?.description;
+  return returnObj;
+};

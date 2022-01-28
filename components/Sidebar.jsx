@@ -45,9 +45,10 @@ const hospitalRoutes = [
   { name: "Data Requests", path: "/hospital/requests" },
 ];
 
-const buyRoutes = [
+const patientRoutes = [
   { name: "Data Requests", path: "/patient/requests" },
-  { name: "New Dataset", path: "/patient" },
+  { name: "New Dataset", path: "/patient/newData" },
+  { name: "Your Contributions", path: "/patient" },
 ];
 
 const SidebarRoute = ({ path, name }, index) => (
@@ -77,7 +78,7 @@ const Sidebar = () => {
         <div className="space-y-8">
           {asPath.includes("/hospital")
             ? hospitalRoutes.map(SidebarRoute)
-            : buyRoutes.map(SidebarRoute)}
+            : patientRoutes.map(SidebarRoute)}
         </div>
       </div>
     </>

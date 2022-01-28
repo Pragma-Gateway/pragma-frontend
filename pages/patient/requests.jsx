@@ -7,7 +7,10 @@ import {
   SearchSection,
   TitleSection,
 } from "../../components/dataPage/DataPage";
-import { getDatasetPageData } from "../../components/helpers";
+import {
+  DatasetFrontendSchema,
+  getDatasetPageData,
+} from "../../components/helpers";
 import { useAuthRedirect } from "../../components/hooks/useAuthRedirect";
 import { useAuth } from "../../contexts/authContext";
 
@@ -37,19 +40,6 @@ const listingData = [
     id: 2,
   },
 ];
-// changes backend data to match the format of the data page
-const DatasetFrontendSchema = ({ item }) => {
-  let returnObj = {};
-  returnObj.id = item._id;
-  returnObj.institution = item.institution;
-  returnObj.name = item.name;
-  returnObj.entries = item.datapoints;
-  returnObj.columns = item?.fields?.length;
-  returnObj.fields = item.fields;
-  returnObj.price = item.offer;
-  returnObj.description = item.description;
-  return returnObj;
-};
 
 // page where buyers list of requests are displayed (active and inactive)
 const Requests = () => {
