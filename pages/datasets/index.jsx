@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/authContext';
 import { useRouter} from "next/router"
 import Link from "next/link"
 import axios from "axios"
+import {AiOutlineClose}  from "react-icons/ai"
 
 const DatasetPage = () => {
     const [token, setToken] = useAuth()
@@ -81,10 +82,23 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm}) => {
     const [name, setName] = useState()
     const [fields, setFields] = useState([])
 
+
+
+    const submitForm = () => {console.log({name, fields})}
     return (
         <div className='create-form-wrapper'>
-            <button onClick={closeForm}>Close</button>
-            
+            <AiOutlineClose onClick={closeForm}>Close</AiOutlineClose>
+            <div className='form-wrapper'>
+                <div>
+                    <label>Name of Dataset</label>
+                    <input type = "text" onChange={e => setName(e.target.value)} />
+                </div>
+                <div>
+                    <label>Fields/Datapoints (Comma-separated)</label>
+                    <input type = "text" onChange={e => setFields(e.target.value.split(","))} />
+                </div>
+                <button className='btn-filled' onClick={submitForm}>Submit</button>
+            </div>
         </div>
     )
 
