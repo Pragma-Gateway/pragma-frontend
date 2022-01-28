@@ -2,12 +2,19 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
-
+import {toast} from "react-toastify"
 const DatasetPage = () => {
     const router = useRouter()
     const [dataset, setDataset] = useState({})
     const [token, setToken] = useAuth()
 
+    const joinDB = async () => {
+        const { id } = router.query
+        const { data } = await axios.post("/database/add/" + id, {headers: {user_auth_token: token}})
+                                    .catch(err => toast.error("There was an error"))
+        console.log(data)
+        router.push("/")
+    }
 
     const getDataset = async () => {
         const { id } = router.query
@@ -34,6 +41,9 @@ const DatasetPage = () => {
                 <br></br>
                 <h3>Description</h3>
                 <p>{description}</p>
+                <br></br>
+                <br></br>
+                <button className='btn-filled' onClick = {joinDB}>Add Patient to Database</button>
             </div>
         </div>
     )
