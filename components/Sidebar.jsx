@@ -46,8 +46,8 @@ const hospitalRoutes = [
 ];
 
 const buyRoutes = [
-  { name: "Data Requests", path: "/buyer/requests" },
-  { name: "New Dataset", path: "/buyer/newDataset" },
+  { name: "Data Requests", path: "/patient/requests" },
+  { name: "New Dataset", path: "/patient" },
 ];
 
 const SidebarRoute = ({ path, name }, index) => (
@@ -74,7 +74,6 @@ const Sidebar = () => {
       >
         <h3 className="text-4xl text-gray-text font-bold font-el">pragma</h3>
         {/* display different routes if they're a hospital or buying the data  */}
-        {console.log(asPath)}
         <div className="space-y-8">
           {asPath.includes("/hospital")
             ? hospitalRoutes.map(SidebarRoute)
