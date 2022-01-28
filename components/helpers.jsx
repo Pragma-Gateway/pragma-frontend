@@ -42,3 +42,12 @@ export const DatasetFrontendSchema = ({ item }) => {
   returnObj.description = item?.description;
   return returnObj;
 };
+
+export const GetYourSubmissions = async (token) => {
+  const { data } = await axios.get("/database/info", {headers: {user_auth_token: token}})
+  const cleaned = []
+  for (let i of data) {
+    cleaned.push(data[0])
+  }
+  return cleaned
+}

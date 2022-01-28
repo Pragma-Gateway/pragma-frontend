@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../contexts/authContext';
-import { getContributions } from '../../../components/helpers';
+import { getContributions, GetYourSubmissions } from '../../../components/helpers';
 import Link from "next/link"
 const ContributionsPage = () => {
     const [token, setToken] = useAuth()
@@ -23,6 +23,7 @@ const ContributionsPage = () => {
         {contributions.map(d => <Link key = {d._id} href = {"/datasets/" + d._id}><span>{d.name} - {d.organization}<br></br></span></Link>)}
 
     </div>
+    <button onClick = {() => GetYourSubmissions(token).then(r => console.log(r))}>Get subs</button>
     </div>
     )
 }

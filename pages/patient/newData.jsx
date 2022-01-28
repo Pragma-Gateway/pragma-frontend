@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-
+import { GetYourSubmissions } from "../../components/helpers";
 import { useAuth } from "../../contexts/authContext";
 import Navbar from "../../components/navbar/Index";
 import { getEMRData } from "../../components/helpers";
@@ -73,7 +73,7 @@ export const EMRpage = () => {
         setDateOfPrevVisit(DateOfPrevVisit);
       });
     } else router.push("/login");
-  }, [token]);
+  }, [token, router]);
 
   return (
     <LayoutContainer title="New entry">
@@ -139,6 +139,7 @@ export const EMRpage = () => {
         <button className="btn-filled" onClick={submitEMRData}>
           Submit
         </button>
+
       </div>
     </LayoutContainer>
   );
