@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { useState } from "react";
-
+import { useAuth } from "../../contexts/authContext";
 import SignButtons from "./SignButtons";
 import PagesList from "./PagesList";
 
 // nav taken from tailwind css template
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [token, setToken] = useAuth()
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -41,7 +42,7 @@ const Navbar = () => {
           </Link>
           <PagesList screenSize="desktop" />
         </div>
-        <SignButtons />
+        {!token && <SignButtons />}
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"

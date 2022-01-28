@@ -5,6 +5,7 @@ import { useRouter} from "next/router"
 import Link from "next/link"
 import axios from "axios"
 import {AiOutlineClose}  from "react-icons/ai"
+import Navbar from '../../components/navbar/Index';
 
 const DatasetPage = () => {
     const [token, setToken] = useAuth()
@@ -24,7 +25,9 @@ const DatasetPage = () => {
     }, [])
 
     return (
-        <div className = "main-wrapper-dataset">
+        <React.Fragment>
+            <Navbar />
+            <div className = "main-wrapper-dataset">
             <Sidebar/>
             <div className='main-data-page'>
                 <Databar Query={query} onNew = {() => setClosed(!closed)} onQueryChange = {setQuery}/> 
@@ -33,6 +36,7 @@ const DatasetPage = () => {
 
                 {closed || <CreateDSpopup datasets={datasets} setDatasets={setDatasets} closeForm = {() => setClosed(!closed)}/>}
         </div>
+        </React.Fragment>
     )
 }
 
@@ -40,7 +44,7 @@ const DatasetPage = () => {
 const Sidebar = () => {
     return (
         <div className='sidebar'>
-            <Link href = "/dataset/create">Create New Dataset</Link>
+            <Link href = "/datasets/me">Your Contributions</Link>
         </div>
     )
 }

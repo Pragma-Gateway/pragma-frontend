@@ -34,9 +34,9 @@ const LoginPage = () => {
             <div className='login-box'>
                 <span className='blob'>Wallet Address: {address}</span>
                 <input 
+                    type="password"
                     value = {password}
-                    onChange = {(e) => setPassword(e.target.value)}
-                    type="text" 
+                    onChange = {(e) => setPassword(e.target.value)} 
                     className='input-outlined' 
                     placeholder='Password'/>
                 <button className = "btn-filled" onClick={() => connectWallet("injected")}>Connect Wallet</button>
