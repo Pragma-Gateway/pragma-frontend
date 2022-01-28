@@ -38,7 +38,7 @@ const Hamburger = ({ open, setOpen }) => {
 };
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <>

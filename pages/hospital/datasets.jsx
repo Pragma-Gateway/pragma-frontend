@@ -1,17 +1,42 @@
+import { useState } from "react";
+import Search from "../../components/hospital/Search";
 import Layout from "../../components/Layout";
 
-const Listing = () => {
+const listingData = [
+  {
+    institution: "TORONTO GENERAL HOSPITAL",
+    name: "Diabetes Records",
+    entries: 20,
+    columns: 6,
+    offer: 2.0,
+    id: 0,
+  },
+  {
+    institution: "Cancer Research Institute",
+    name: "Glioblastoma Records",
+    entries: 50,
+    columns: 8,
+    offer: 5.0,
+    id: 1,
+  },
+  {
+    institution: "Platlet Society",
+    name: "Thrombocytopenia Records",
+    entries: 100,
+    columns: 15,
+    offer: 2.0,
+    id: 2,
+  },
+];
+
+const Listing = ({ data: { institution, name, entries, columns, offer } }) => {
   return (
     <div className="grid gap-1 rounded-lg border-gray-text border-2 w-[max-content] p-4 mt-10">
-      <p className="text-sm font-normal text-gray-text">
-        TORONTO GENERAL HOSPITAL
-      </p>
-      <p className="text-md font-normal text-gray-text">
-        Name: Diabetes Records
-      </p>
-      <p className="text-sm font-normal text-gray-text">Entries: 20</p>
-      <p className="text-sm font-normal text-gray-text">Columns: 6</p>
-      <p className="text-sm font-normal text-gray-text">Offer: 2.0 ETH</p>
+      <p className="text-sm font-normal text-gray-text">{institution}</p>
+      <p className="text-md font-normal text-gray-text">Name: {name}</p>
+      <p className="text-sm font-normal text-gray-text">Entries: {entries}</p>
+      <p className="text-sm font-normal text-gray-text">Columns: {columns}</p>
+      <p className="text-sm font-normal text-gray-text">Offer: {offer} ETH</p>
       {/* opt-in button */}
       <div className="bg-gray-text p-2 px-6 w-[10rem] rounded-r-full rounded-l-full">
         <p className="text-sm font-normal text-white text-center">
@@ -23,6 +48,8 @@ const Listing = () => {
 };
 // page that displays past data given from that institution
 const Datasets = () => {
+  const [listings, setListings] = useState(listingData);
+
   return (
     <Layout title="Datasets" className="ml-[20vw] mt-[8rem]">
       <div className="mt-10 grid grid-rows-[repeat(4,auto)] grid-cols-[auto] gap-2">
@@ -36,27 +63,28 @@ const Datasets = () => {
         {/* search abr div */}
         <div className="flex space-x-4 pt-2">
           <p className="text-lg font-normal text-gray-text">Search</p>
-          <input
-            className="rounded border-gray-text border-2 focus:border-gray-text"
-            type="text"
+          <Search
+            options={{
+              includeScore: true,
+              // Search in `author` and in `tags` array
+              keys: [
+                "id",
+                "institution",
+                "name",
+                "entries",
+                "columns",
+                "offer",
+              ],
+            }}
+            setData={setListings}
+            originalData={listingData}
           />
         </div>
-        {/* filter div */}
-        {/* removed the filter for ease of implementation */}
-        {/* <div>
-            <p className="text-lg font-normal text-gray-text">filter</p>
-            <input className="rounded border-gray-text border-2" type="text" />
-          </div> */}
-        {/* </div> */}
         {/* the list of datasets */}
         <div className="grid grid-cols-dataset">
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
-          <Listing />
+          {listings.map((listing) => (
+            <Listing key={listing.id} data={listing} />
+          ))}
         </div>
       </div>
     </Layout>
