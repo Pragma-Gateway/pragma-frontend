@@ -5,6 +5,9 @@ import "../styles/globals.css";
 import axios from "axios"
 import { AuthContext } from "../contexts/authContext"
 import { useState } from "react"
+import {toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 
 axios.defaults.baseURL = (process.env.NODE_ENV == "production") 

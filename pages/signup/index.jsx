@@ -3,23 +3,32 @@ import { ThirdwebWeb3Provider, useWeb3 } from "@3rdweb/hooks";
 import { useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import axios from "axios"
+import { useRouter } from "next/router"
 
 const LoginPage = () => {
     const { connectWallet, address, error } = useWeb3();
     const [password, setPassword] = useState("")
     const [token, setToken] = useAuth()
+    const router = useRouter()
 
     const login = async () => {
         console.log({
             username: address,
             password
+            
         })
-
-        // const { data } = await axios.post("/signup", {
-        //     username: address,
-        //     password
-        // })
-        // const { token } = data;
+            try {
+                const { data } = await axios.post("/signup", {
+                username: address,
+                password
+            })
+            const { token } = data;
+            setToken(token)
+            router.push("/")
+        }
+        catch(err) {
+            console.log(err)
+        }
     }
 
     return (
