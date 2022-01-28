@@ -14,6 +14,6 @@ export const getEMRData = async (token) => {
 }
 
 export const getContributions = async (token) => {
-  
-  const { data } = await axios.get("/contrubutions", {headers: { user_auth_token: token }})
+  const { data } = await axios.get("/contributions", {headers: { user_auth_token: token }})
+  return data.databaseContributions
 }
