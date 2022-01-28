@@ -10,9 +10,9 @@ const DatasetPage = () => {
 
     const joinDB = async () => {
         const { id } = router.query
-        const { data } = await axios.post("/database/add/" + id, {headers: {user_auth_token: token}})
+        const { data } = await axios.post("/database/add/" + id, {},{headers: {user_auth_token: token}})
                                     .catch(err => toast.error("There was an error"))
-        console.log(data)
+        toast.success("Added Patient to Dataset")
         router.push("/")
     }
 

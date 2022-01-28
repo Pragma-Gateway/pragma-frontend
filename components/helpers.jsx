@@ -14,3 +14,16 @@ export const getDatasetPageData = async ({ token }) => {
   console.log(data);
   return data;
 };
+
+export const getEMRData = async (token) => {
+  const { data } = await axios.get("/emr", {
+    headers: { user_auth_token: token },
+  });
+  return data.data;
+};
+
+export const getContributions = async (token) => {
+  const { data } = await axios.get("/contrubutions", {
+    headers: { user_auth_token: token },
+  });
+};

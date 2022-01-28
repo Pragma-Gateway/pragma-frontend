@@ -113,6 +113,7 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm }) => {
             onChange={(e) => setOrg(e.target.value)}
           />
         </div>
+<<<<<<< HEAD
         <div>
           <label>Name of Dataset</label>
           <input
@@ -120,6 +121,17 @@ const CreateDSpopup = ({ datasets, setDatasets, closeForm }) => {
             type="text"
             onChange={(e) => setName(e.target.value)}
           />
+=======
+        </React.Fragment>
+    )
+}
+
+
+const Sidebar = () => {
+    return (
+        <div className='sidebar'>
+            <Link href = "/datasets/me">Your Contributions</Link>
+>>>>>>> 659eacae2f0e2302528882215dc6e4f34c3a8202
         </div>
         <div>
           <label>Fields/Datapoints (Comma-separated)</label>

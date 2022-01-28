@@ -247,3 +247,14 @@ h6 {
   
   font-size: 1.5rem;
 }
+
+.emr-wrapper {
+  width: 40%;
+  padding: 2rem;
+}
+
+.emr-wrapper h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.shadow {box-shadow: 0 2px 8px 2px var(--light-shadow);}
