@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 const LoginPage = () => {
   const { connectWallet, address, error } = useWeb3();
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("");
   const [token, setToken] = useAuth();
   const router = useRouter();
@@ -14,7 +15,7 @@ const LoginPage = () => {
   const login = async () => {
     try {
       const { data } = await axios.post("/signup", {
-        username: address,
+        username,
         password,
       });
       const { token } = data;
@@ -28,7 +29,18 @@ const LoginPage = () => {
   return (
     <div className="main-wrapper">
       <div className="login-box">
-        <span className="blob">Wallet Address: {address}</span>
+        {/* <span className="blob">Wallet Address: {address}</span> */}
+        <label>Username</label>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          type="text"
+          className="input-outlined"
+          placeholder="Username"
+        />
+
+
+        <label>Password</label>
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -36,12 +48,12 @@ const LoginPage = () => {
           className="input-outlined"
           placeholder="Password"
         />
-        <button
+        {/* <button
           className="btn-filled"
           onClick={() => connectWallet("injected")}
         >
           Connect Wallet
-        </button>
+        </button> */}
         <button className="btn-filled" onClick={() => login()}>
           Login
         </button>
