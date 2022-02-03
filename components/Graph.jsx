@@ -1,7 +1,7 @@
 import React from "react";
 import DeckGL from "@deck.gl/react";
 import { OrthographicView } from "@deck.gl/core";
-import { ScatterplotLayer, TextLayer } from "@deck.gl/layers";
+import { ScatterplotLayer, TextLayer, PolygonLayer } from "@deck.gl/layers";
 
 import graphData from "./graphData";
 
@@ -36,6 +36,16 @@ const getCoordMean = (name, data) => {
     }
   }
   return [xsum / count, ysum / count];
+};
+
+const getPolygonPoints = (name, data) => {
+  let points = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][2] === name) {
+      points.push([data[i][0], data[i][1]]);
+    }
+  }
+  return points;
 };
 
 const flowerNames = ["setosa", "versicolor", "virginica"];
@@ -80,6 +90,23 @@ export default function App({
       updateTriggers: {
         getFillColor: [MALE_COLOR, FEMALE_COLOR, OTHER_COLOR],
       },
+    }),
+    new PolygonLayer({
+      id: "polygon-layer",
+      data: flowerNames,
+      pickable: true,
+      stroked: true,
+      filled: false,
+      wireframe: true,
+      lineWidthMinPixels: 1,
+      getPolygon: (d) =>
+        console.log({
+          contour: getPolygonPoints(d, graphDataToPoints(graphData)),
+        }) || getPolygonPoints(d, graphDataToPoints(graphData)),
+      getElevation: (d) => 0,
+      // getFillColor: (d) => [60, 140, 0, 0.5],
+      getLineColor: [255, 255, 255, 25],
+      getLineWidth: 1,
     }),
     // text layer for the group names
     new TextLayer({
