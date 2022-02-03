@@ -1,7 +1,7 @@
 import React from "react";
 import DeckGL from "@deck.gl/react";
 import { OrthographicView } from "@deck.gl/core";
-import { ScatterplotLayer } from "@deck.gl/layers";
+import { ScatterplotLayer, TextLayer } from "@deck.gl/layers";
 
 import graphData from "./graphData";
 
@@ -23,6 +23,22 @@ const INITIAL_VIEW_STATE = {
   minZoom: -2,
   maxZoom: 40,
 };
+// given a name and the data, find the mean that the text should be placed
+const getCoordMean = (name, data) => {
+  let xsum = 0;
+  let ysum = 0;
+  let count = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][2] === name) {
+      xsum += data[i][0];
+      ysum += data[i][1];
+      count++;
+    }
+  }
+  return [xsum / count, ysum / count];
+};
+
+const flowerNames = ["setosa", "versicolor", "virginica"];
 
 export default function App({
   data = graphDataToPoints(graphData),
@@ -40,6 +56,7 @@ export default function App({
   ];
 
   const layers = [
+    // scatter plot showing the clusters
     new ScatterplotLayer({
       id: "scatter-plot",
       data,
@@ -63,6 +80,18 @@ export default function App({
       updateTriggers: {
         getFillColor: [MALE_COLOR, FEMALE_COLOR, OTHER_COLOR],
       },
+    }),
+    // text layer for the group names
+    new TextLayer({
+      id: "text-layer",
+      data: flowerNames,
+      pickable: true,
+      getPosition: (d) => getCoordMean(d, graphDataToPoints(graphData)),
+      getText: (d) => d,
+      getSize: 32,
+      getAngle: 0,
+      getTextAnchor: "middle",
+      getAlignmentBaseline: "center",
     }),
   ];
 
